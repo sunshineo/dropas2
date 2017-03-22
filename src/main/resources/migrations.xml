@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1" author="ssun">
+        <createTable tableName="privateKey">
+            <column name="privateKeyId" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="as2Id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="privateKey" type="blob">
+                <constraints nullable="false" />
+            </column>
+            <column name="createdAt" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="updatedAt" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <sql>
+            ALTER TABLE `privateKey` CHANGE COLUMN `updatedAt`
+            `updatedAt`
+            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE
+            CURRENT_TIMESTAMP;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="ssun">
+        <createTable tableName="publicKey">
+            <column name="publicKeyId" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="as2Id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="publicKey" type="blob">
+                <constraints nullable="false" />
+            </column>
+            <column name="createdAt" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="updatedAt" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <sql>
+            ALTER TABLE `publicKey` CHANGE COLUMN `updatedAt`
+            `updatedAt`
+            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE
+            CURRENT_TIMESTAMP;
+        </sql>
+    </changeSet>
+</databaseChangeLog>
